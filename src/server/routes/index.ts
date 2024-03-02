@@ -25,6 +25,9 @@ router.get("/status", (req, res) => {
 // teste com controller
 router.post("/usuarios", UsuariosController.create);
 
+// get all usuarios
+router.get("/usuarios", UsuariosController.getAll);
+
 // Rota para testar a conexão com o banco de dados
 router.get("/test-db-connection", async (req, res) => {
 	try {
