@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
+import { UsuariosController } from "./../controllers";
 
 const router = Router();
 
@@ -18,5 +19,8 @@ router.get("/status", (req, res) => {
 	// Retornando com status code
 	return res.status(StatusCodes.OK).send("Status: 200");
 });
+
+// teste com controller
+router.post("/usuarios", UsuariosController.create);
 
 export { router };
