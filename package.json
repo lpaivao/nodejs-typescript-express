@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-typescript-express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lpaivao/nodejs-typescript-express.git",
+  "author": "Lucas de Paiva",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  }
+}
