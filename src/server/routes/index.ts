@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import { UsuariosController } from "./../controllers";
+import pool from "./../database";
+
 
 const router = Router();
 
@@ -22,5 +24,19 @@ router.get("/status", (req, res) => {
 
 // teste com controller
 router.post("/usuarios", UsuariosController.create);
+
+// Rota para testar a conexão com o banco de dados
+router.get("/test-db-connection", async (req, res) => {
+	try {
+		const client = await pool.connect();
+		const message = { message: "Conexão com o banco de dados estabelecida com sucesso" };
+		res.json(message);
+		client.release();
+	} catch (error) {
+		console.error("Erro ao conectar ao banco de dados:", error);
+		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Erro ao conectar ao banco de dados" });
+	}
+});
+
 
 export { router };
