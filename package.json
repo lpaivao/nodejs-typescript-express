@@ -20,6 +20,7 @@
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "start": "yarn ts-node-dev src/index.ts"
+    "start": "yarn ts-node-dev src/index.ts",
+    "prod": "node dist/index.js"
   }
 }
