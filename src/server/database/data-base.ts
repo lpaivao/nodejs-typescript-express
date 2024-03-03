@@ -1,3 +1,4 @@
+// database.ts
 import { Pool } from "pg";
 import dotenv from "dotenv";
 
@@ -5,8 +6,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Configurar a conexão com o banco de dados PostgreSQL
-const pool = new Pool({
+export const pool = new Pool({
 	connectionString: process.env.DB_URI,
 });
-
-export default pool;

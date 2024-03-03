@@ -1,8 +1,7 @@
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import { UsuariosController } from "./../controllers";
-import pool from "./../database";
-
+import { pool } from "../database/data-base";
 
 const router = Router();
 
