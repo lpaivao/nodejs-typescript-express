@@ -27,6 +27,13 @@ router.post("/usuarios", UsuariosController.create);
 // get all usuarios
 router.get("/usuarios", UsuariosController.getAll);
 
+router.get("/usuarios/:id", UsuariosController.get);
+
+router.delete("/usuarios/:id", UsuariosController.remove);
+
+router.put("/usuarios/:id", UsuariosController.update);
+
+
 // Rota para testar a conexão com o banco de dados
 router.get("/test-db-connection", async (req, res) => {
 	try {

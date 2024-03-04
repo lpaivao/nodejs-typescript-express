@@ -6,7 +6,7 @@ import { AppDataSource } from "../../database/data-source";
 // Função para verificar se um usuário já existe com o mesmo CPF
 async function usuarioExiste(cpf: string): Promise<boolean> {
 	const userRepository = AppDataSource.getRepository(Usuario);
-	const existingUser = await userRepository.findOne({ where: { cpf } });
+	const existingUser = await userRepository.findOneBy({ cpf: cpf });
 	return !!existingUser;
 }
 
@@ -14,7 +14,7 @@ async function usuarioExiste(cpf: string): Promise<boolean> {
 export const create = async (req: Request, res: Response): Promise<void | Response<unknown, Record<string, unknown>>> => {
 	try {
 		const novoUsuario: Usuario = req.body; // Assume que o corpo da requisição contém os dados do novo usuário
-		const { nome, cpf, data_nasc } = novoUsuario;
+		const { cpf } = novoUsuario;
 
 		// Verificar se o usuário já existe com o mesmo CPF
 		const usuarioExistente = await usuarioExiste(cpf);
@@ -25,8 +25,7 @@ export const create = async (req: Request, res: Response): Promise<void | Respon
 		const userRepository = AppDataSource.getRepository(Usuario);
 		await userRepository.save(novoUsuario);
 
-		console.log("Novo usuário criado com sucesso");
-		res.status(StatusCodes.CREATED).json({ message: "Novo usuário criado com sucesso" });
+		return res.status(StatusCodes.CREATED).json({ message: "Novo usuário criado com sucesso" });
 	} catch (error) {
 		console.error("Erro ao criar novo usuário:", error);
 		return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Erro ao criar novo usuário" });
